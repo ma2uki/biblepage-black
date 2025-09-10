@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eIT</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <link rel="icon" href="images/favicon.ico" type="image/svg+xml">
+</head>
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading">
+        <p>Loading...</p>
+        <div id="loading-screen"></div>
+    </div>
+
+    <!-- ナビゲーションメニュー -->
+    <nav>
+        <button id="menu-open" class="btn-menu">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <title>メニューを開く</title>
+                <path clip-rule="evenodd" d="m4.25 8c0-.41421.33579-.75.75-.75h14c.4142 0 .75.33579.75.75s-.3358.75-.75.75h-14c-.41421 0-.75-.33579-.75-.75zm0 4c0-.4142.33579-.75.75-.75h14c.4142 0 .75.3358.75.75s-.3358.75-.75.75h-14c-.41421 0-.75-.3358-.75-.75zm.75 3.25c-.41421 0-.75.3358-.75.75s.33579.75.75.75h14c.4142 0 .75-.3358.75-.75s-.3358-.75-.75-.75z" fill-rule="evenodd"/>
+            </svg>
+        </button>
+        <div id="menu-panel">
+            <button id="menu-close" class="btn-menu">
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <title>メニューを閉じる</title>
+                    <path clip-rule="evenodd" d="m7.53033 6.46967c-.29289-.29289-.76777-.29289-1.06066 0s-.29289.76777 0 1.06066l4.46963 4.46967-4.46963 4.4697c-.29289.2929-.29289.7677 0 1.0606s.76777.2929 1.06066 0l4.46967-4.4696 4.4697 4.4696c.2929.2929.7677.2929 1.0606 0s.2929-.7677 0-1.0606l-4.4696-4.4697 4.4696-4.46967c.2929-.29289.2929-.76777 0-1.06066s-.7677-.29289-1.0606 0l-4.4697 4.46963z" fill-rule="evenodd"/>
+                </svg>
+            </button>
+            <ul class="menu-list">
+                
+                <li><a href="https://www.instagram.com/yuki834363?igsh=OGQ5ZDc2ODk2ZA==
+">Instagram</a></li>
+                <li><a href="https://x.com/matsu777kz?s=21&t=4Tziq7vr4hZU3lMPwlmKHw">X</a></li>
+                <li><a href="https://ma2uki.blogspot.com/?m=1">Blogger</a></li>
+                <li><a href="mailto:y.matsu880077@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+      
+    <section class="hero">
+        <h1 class="title">eIT<br>education × IT</h1>
+    </section>
+      
+    <section class="concept">
+        <div class="wrapper">
+            <h2 class="title fadein">Concept</h2>
+                <p class="fadein">「好き」を「カタチ」に、やがて「自信」に。</p>
+                <p class="fadein">ふとしたことで人生は変わります。</p>
+                <p class="fadein">自分の写真や動画をwebページに作り上げていくので、</p>
+                <p class="fadein">楽しみながら制作できるはず。</p>
+                <p class="fadein">only one あなたの個性が輝く１ページを創ってみませんか？</p>
+        </div>
+        <img src="images/concepts.png" alt="">
+    </section>
+    
+
+
+<section class="gallery">
+    <div class="gallery-main-image">
+        <img src="images/img1.PNG" alt="" id="main-display-img" style="display: none;">
+        <video src="images/img3.mp4" autoplay muted loop playsinline id="main-display-video" style="display: block;"></video>
+    </div>
+    <div class="gallery-thumbnails-container">
+        <h2 class="title fadein">Gallery</h2>
+        <ul class="gallery-thumbnails">
+            <li class="fadein"><img src="images/img1.PNG" alt="" data-type="image"></li>
+            <li class="fadein"><img src="images/img2.jpg" alt="" data-type="image"></li>
+            <li class="fadein"><img src="images/img5.PNG" alt="" data-type="image"></li>
+            <li class="fadein video-item" data-type="video">
+                <video src="images/img5.mp4" autoplay muted loop playsinline></video>
+            </li>
+            <li class="fadein video-item" data-type="video">
+                <video src="images/img3.mp4" autoplay muted loop playsinline></video>
+            </li>
+            <li class="fadein video-item" data-type="video">
+                <video src="images/img4.mp4" autoplay muted loop playsinline></video>
+            </li>
+            </ul>
+    </div>
+</section>
+
+    <section class="shop">
+        <div class="shop-content wrapper">
+            <h2 class="title fadein">Lesson On Demand</h2>
+            <p class="fadein">参加費無料。持ち物はパソコンとアップしたい写真、動画のみ。</p>
+            <p class="fadein">
+                    <a href="#" id="open-dialog" class="fadein linkdialog">確認事項</a>
+                をお読みいただき、お問い合わせください。</p>
+
+<!-- 確認事項ダイアログ -->
+<dialog id="info-dialog">
+        <button id="close-dialog" class="dialog-close-btn" aria-label="閉じる">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="12" fill="var(--beige)"/>
+                        <path d="M8 8L16 16M16 8L8 16" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+        </button>
+        <h3>確認事項</h3>
+        <ul>
+            <li><p>作品はprivate(自分だけが見れる)かpublish（公開）を選んでいただきます。</p>
+            <p>限定公開にしたい場合は、ご自身でお手続きをして下さい。</p></li>
+            <li>写真や動画の掲載にかかる責任、通信にかかる費用や責任は各自でご負担いただきます。</li>
+        </ul>
+        
+</dialog>
+                <div class="sns-icons fadein" style="display: flex; gap: 1.5rem; justify-content: center; align-items: center;">
+                <a href="https://www.instagram.com/yuki834363?igsh=OGQ5ZDc2ODk2ZA==" target="_blank" rel="noopener" title="Instagram">
+                    <img src="images/icon1.png" alt="Instagram" style="height:2.2rem; width:2.2rem; display:inline-block;">
+                </a>
+                <a href="https://x.com/matsu777kz?s=21&t=4Tziq7vr4hZU3lMPwlmKHw" target="_blank" rel="noopener" title="X">
+                    <img src="images/icon2.png" alt="X" style="height:2.2rem; width:2.2rem; display:inline-block;">
+                </a>
+                <a href="https://ma2uki.blogspot.com/?m=1" target="_blank" rel="noopener" title="Blogger">
+                    <img src="images/icon3.png" alt="Blogger" style="height:2.2rem; width:2.2rem; display:inline-block;">
+                </a>
+                <a href="mailto:hello@example.com" title="メール">
+                    <img src="images/icon4.png" alt="メール" style="height:2.2rem; width:2.2rem; display:inline-block;">
+                </a>
+            </div>
+            
+            <h3 class="fadein">Place</h3>
+            <p class="fadein">
+                JR広島駅周辺<br>
+                OnDemand（別途調整）<br>
+            </p>
+        </div>
+    </section>
+</body>
+</html>
