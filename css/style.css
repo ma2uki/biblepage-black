@@ -1,69 +1,125 @@
-/* DIALOG (確認事項) */
-/* ベージュ系カラー追加 */
-:root {
-    --beige: #f7f3ee;
+body {
+    background-color: black;
 }
-#info-dialog {
-        padding: 2.5rem 2rem 2rem 2rem;
-        border: none;
-        border-radius: 1.5rem;
-        background: var(--beige);
-        color: var(--brown);
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(0.7);
-        opacity: 0;
-        transition: opacity 1.2s cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.4,0,.2,1);
-        z-index: 10000;
-        min-width: 320px;
-        max-width: 90vw;
-        text-align: center;
-        outline: none;
+
+
+.text-display{
+    position: relative;
+    width: 95vw;
+    background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.3) ,
+        rgba(255,182,193,0.15) ,
+        rgba(255,218,185,0.12) ,
+        rgba(0,0,0,0.25) ,
+        );
+    align-items: center;
+    margin: 0 auto;
 }
-#info-dialog[open] {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+.text-item {
+    display: none;
 }
-.dialog-close-btn {
+.text-item.active {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.text-image {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
+    width: 70vw;
+    height: 70vh;
+    opacity: 0.3;
+    z-index: 1;
+    filter: blur(2px);
+}
+.glass-message {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(255,182,222,0.32) 0%, rgba(255,192,203,0.18) 100%);
+    border-radius: 2.5rem;
+    box-shadow:
+        0 0 60px 10px rgba(255,182,222,0.25),
+        0 8px 48px 0 rgba(255,182,222,0.10),
+        0 0 120px 0 rgba(255,182,222,0.13) inset;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 2px solid rgba(255,182,222,0.25);
+    padding: 3rem 2rem;
+    color: #fff0fa;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-shadow:
+        0 4px 24px rgba(255,182,222,0.5),
+        0 2px 8px rgba(0,0,0,0.18);
+    animation: breath 3s ease-in-out infinite alternate;
+    letter-spacing: 0.07em;
+    line-height: 1.7;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+@keyframes breath {
+    from { box-shadow: 0 4px 32px 0 rgba(0,0,0,0.2);}
+    to   { box-shadow: 0 8px 48px 0 rgba(0,0,0,0.4);}
+}
+.message-nav {
+    /* position: absolute; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.5rem;
+}
+.nav-btn {
+    background: rgba(255,255,255,0.2);
     border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    font-size: 2rem;
     cursor: pointer;
     z-index: 10;
-    padding: 0.2rem;
-    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.dialog-close-btn svg {
-    display: block;
+.nav-btn:hover {
+    background: rgba(255,255,255,0.4);
 }
-.dialog-close-btn:hover {
-    transform: scale(1.15);
+.nav-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+.nav-icon{
+    color: rgba(255,255,255,0.8);
+}
+.dot {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.dot.active {
+    color: rgba(255,218,185,0.8);
+    background: #fff;
+    transform: scale(1.2);
 }
 @charset 'UTF-8';
 
 /*
-VARIABLES
-================================================ */
-:root {
-    --light-green: #d5edeb;
-    --green: #63dbd0;
-    --brown: #403632;
-    --light-grey: #eee;
-    --white: #fff;
-    --oswald-font: 'Oswald', sans-serif;
-}
-
-/*
 GENERAL STYLING
 ================================================ */
-body {
-    color: var(--brown);
-    background: url('../images/bg.png') no-repeat right bottom / cover fixed;
-    text-align: center;
-}
 
 /*
 COMMON
@@ -129,216 +185,91 @@ LOADING
 SLIDE MENU
 ================================================ */
 /* 開閉ボタン */
-.btn-menu {
-    position: fixed;
-    right: 1rem;
-    top: 1rem;
-    z-index: 4;
-    padding: .5rem 1rem;
-    border: 1px solid var(--brown);
-    border-radius: 50%;
-    height: 4rem;
-    width: 4rem;
-    transition: .4s;
-}
-.btn-menu svg {
-    fill: var(--brown);
-    margin-top: .25rem;
-    height: 2rem;
-    width: 2rem;
-}
+/* 
 
-/* 閉じるボタン */
-#menu-close {
-    border: 1px solid var(--light-green);
-}
-#menu-close svg {
-    fill: var(--light-green);
-}
-
-/* スライドメニューパネル */
-#menu-panel {
-    position: fixed;
+/* HEADER
+================================================ */ 
+#particles-js-canvas-el {
+    position: absolute;
     top: 0;
-    right: 0;
-    z-index: 4;
-    padding: 8rem 2rem 2rem;
-    width: max(32vw, 20rem);
-    height: 100vh;
-    background-color: var(--brown);
-    box-shadow: 0 0 2rem var(--brown);
-    font-family: var(--oswald-font);
-    translate: 100vw;
-}
-.menu-list {
-    list-style: none;
-}
-.menu-list li {
-    margin: 1.5rem 0;
-    opacity: 0;
-}
-.menu-list a {
-    color: var(--light-green);
-    text-decoration: none;
-    font-size: 2rem;
-}
-
-/*
-HERO
-================================================ */
-.hero {
-    height: 100vh;
-    position: relative;
-}
-.hero::after {
-    content: '';
-    width: 50%;
-    height: 100vh;
-    background: url('../images/heros.png') no-repeat center / cover;
-    position: absolute;
-    inset: 0;
-}
-.hero .title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: 2;
+    left: 0;
     width: 100%;
-    font-size: max(12vw, 3rem);
-    line-height: 1.2;
+    height: 100%;
+    z-index: 2;
+    display: block;
+}
+header {
+    position: relative;
+    width: 100%;
+    margin-bottom: .5rem;
+
+    z-index: 1;
+}
+.header-text {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.header-title {
+    color: white;
+    font-size: 2rem;
+    z-index: 3;
+}
+.header-name {
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    z-index: 4;
+}
+.header-link {
+    font-size: 1.25rem;
+    z-index: 4;
 }
 
-/*
-CONCEPT
-================================================ */
-.concept {
-    margin: 8rem 0;
-    background-image: linear-gradient(
-        to right,
-        transparent 0%,
-        transparent 20%,
-        var(--light-grey) 20%,
-        var(--light-grey) 100%
-    );
+.header-link img {
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 0.2em;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    vertical-align: middle;
 }
-.concept p {
-    text-align: left;
-    margin-bottom: 2rem;
+header img {
+    object-fit: cover;
+    object-position: center top;
+    opacity: var(--video-opacity);
 }
+
+#particles-js-canvas-el,
+.header-text
+ {
+    width: 100vw;
+    height: 90vh;
+}
+
 
 
 /* GALLERY
 ================================================ */
+
+#particles-ga {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 .gallery {
-        display: grid; /* gallery全体をgridコンテナにする */
-        grid-template-columns: 2fr 1fr; /* メイン画像エリアを2、サムネイルエリアを1の比率で分割 */
-        gap: 2rem; /* 要素間の隙間 */
-        max-width: 1200px; /* レイアウトの最大幅 */
-        margin: 2rem auto; /* 中央寄せ */
-        padding: 0 1rem; /* 左右に少し余白 */
-}
-
-@media (max-width: 600px) {
-    .gallery {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        max-width: 100vw;
-        padding: 0 0.5rem;
-    }
-    .gallery-main-image {
-        max-width: 100%;
-        margin-bottom: 1.5rem;
-    }
-    .gallery-thumbnails-container {
-        width: 100%;
-        margin: 0 auto;
-    }
-    .gallery-thumbnails {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-}
-}
-
-/* メインの画像・動画表示部分 */
-.gallery-main-image {
-    grid-column: 1 / 2; /* 左側のカラムに配置 */
     position: relative;
-    overflow: hidden; /* はみ出た部分を隠す */
-    border-radius: 8px; /* 角を丸くする（必要なら） */
-    max-width: 700px; /* 例: 好きな幅に調整。必要に応じて変更可 */
-}
-
-.gallery-main-image img,
-.gallery-main-image video {
-    width: 100%;
-    display: block; /* 余白をなくす */
-    height: auto; /* アスペクト比を維持 */
-    object-fit: cover; /* コンテナに合わせてトリミング */
+    min-height: 400px; /* 必要に応じて調整 */
 }
 
 
-/* メイン画像につく装飾（必要なら調整） */
-.gallery-main-image::after {
-    /* ... 既存のスタイル ... */
-    /* 必要であれば、メイン画像・動画のサイズに合わせて調整 */
-}
-
-/* サムネイル部分のレイアウトを調整 */
-.gallery-thumbnails-container {
-    grid-column: 2 / 3; /* 右側のカラムに配置 */
-    /* wrapperクラスのスタイルがあれば、ここに適用 */
-}
-
-.gallery-thumbnails {
-    display: grid;
-    gap: 1rem;
-    /* 3x3グリッドにする */
-    grid-template-columns: repeat(1, 1fr); /* デフォルトは1列 */
-    list-style: none;
-    margin: 0; /* titleとのマージンは別途管理 */
-}
-
-/* 個々のサムネイルのスタイル */
-.gallery-thumbnails li {
-    position: relative;
-}
-
-/* サムネイルの画像・動画共通スタイル */
-.gallery-thumbnails img,
-.gallery-thumbnails video {
-    aspect-ratio: 3/4; /* サムネイルのアスペクト比 */
-    object-fit: cover;
-    width: 100%;
-    height: auto; /* アスペクト比を維持 */
-    cursor: pointer;
-    display: block;
-    transition: transform 0.3s ease; /* ホバー時の拡大アニメーション */
-}
-
-/* ホバー時に少し拡大するスタイル */
-.gallery-thumbnails img:hover,
-.gallery-thumbnails video:hover {
-    transform: scale(1.05); /* 例: 1.05倍に拡大 */
-}
-
-/* 動画サムネイルの占めるグリッドサイズ */
-.gallery-thumbnails li.video-item {
-    /* video-itemクラスを持つ<li>のスタイル */
-    /* ここで、動画サムネイルがグリッド内でどのように配置されるかを調整します。 */
-    /* 元の3x3グリッドを想定し、動画を2x2マス分占めるように調整することも可能ですが、 */
-    /* サムネイルエリアが1カラムなので、1つのサムネイルとして表示するのが自然かもしれません。 */
-    /* その場合、このクラスは不要か、動画自体のスタイル調整に留めます。 */
-}
-
-.gallery-thumbnails li.video-item video {
-    /* 動画要素自体にもスタイルを適用 */
-    width: 100%;
-    height: auto; /* アスペクト比を維持 */
-    object-fit: cover;
-}
 
 /* fadeinクラスなどのアニメーションはそのまま */
 .fadein {
@@ -346,43 +277,38 @@ CONCEPT
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
-.fadein.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-/*
-SHOP INFO
-================================================ */
-.shop {
-    background: url('../images/lesson.png') no-repeat center top / cover;
-    margin-top: 16rem;
-    position: relative;
-    height: 40rem;
-}
-.shop-content {
-    background: var(--white);
-    padding: 3rem;
-    position: absolute;
-    top: -8rem;
-    width: 90vw;
-    left: 0;
-    right: 0;
-}
-.shop h3 {
-    margin: 1rem 0;
-    padding-top: 2rem;
-    font-weight: bolder;
-    border-top: 1px solid var(--light-grey);
-}
 
-.fadein.linkdialog {
-    color: black;
-    text-decoration: none;
-    padding: 5px 5px;
+
+/*
+FOOTER
+================================================ */
+footer {
+    background: linear-gradient(135deg, rgba(40,10,40,0.55) 0%, rgba(60,0,40,0.35) 100%);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border-top: 1px solid rgba(255,182,222,0.18);
+    color: #fff0fa;
+    text-align: center;
+    padding: .3rem 1rem .3rem 1rem;
+    box-shadow: 0 0 40px 0 rgba(255,182,222,0.10) inset;
 }
-.fadein.linkdialog:hover {
-    background-color: #f7f3ee;
-    border-radius: 10px
+.footer-link {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.2rem; /* リンク同士の間隔を広げる */
+    font-size: 1.2rem;
+    /* margin-bottom: 1rem; */
+}
+.footer-link a {
+    color: #fff0fa;
+    text-decoration: none;
+    border-top: none;
+}
+.footer-link a:hover {
+    color: gainsboro;
+    text-decoration: none;
 }
 
 
@@ -420,18 +346,6 @@ DESKTOP SIZE
         color: var(--green);
     }
 
-/* CONCEPT*/
-    .concept {
-        display: flex;
-        margin: 16rem 0;
-    }
-    .concept p {
-        text-align-last: left;
-    }
-    .concept img {
-        margin: -6rem 0;
-        max-width: 38rem;
-    }
 
 /* GALLERY */
     .gallery {
@@ -456,9 +370,3 @@ DESKTOP SIZE
         transition: .4s;
     }
 
-/* SHOP */
-    .shop {
-        margin-top: 20rem;
-        height: 50rem;
-    }
-}
