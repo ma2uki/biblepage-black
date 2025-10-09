@@ -141,9 +141,12 @@ img {
     margin: 2rem 0;
     transition: .4s;
 }
-.fadein{
+.fadein {
     opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
+
 
 /*
 LAYOUT
@@ -259,16 +262,6 @@ header img {
     position: relative;
     min-height: 400px; /* 必要に応じて調整 */
 }
-
-
-
-/* fadeinクラスなどのアニメーションはそのまま */
-.fadein {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
 
 /*
 FOOTER
