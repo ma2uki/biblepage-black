@@ -118,10 +118,6 @@ body {
 @charset 'UTF-8';
 
 /*
-GENERAL STYLING
-================================================ */
-
-/*
 COMMON
 ================================================ */
 p {
@@ -181,11 +177,6 @@ LOADING
     font-family: var(--oswald-font);
 }
 
-/*
-SLIDE MENU
-================================================ */
-/* 開閉ボタン */
-/* 
 
 /* HEADER
 ================================================ */ 
@@ -324,28 +315,6 @@ DESKTOP SIZE
         color: var(--brown);
         background: var(--light-green);
     }
-
-/* SLIDE MENU */
-@media (max-width: 480px) {
-    .btn-menu {
-        right: 0.1rem;
-        top: 0.1rem;
-        height: 2.6rem;
-        width: 2.6rem;
-        padding: 0.1rem 0.2rem;
-    }
-}
-    .btn-menu:hover {
-        background-color: var(--light-green);
-    }
-    #menu-close:hover svg {
-        fill: var(--brown);
-    }
-    .menu-list a:hover {
-        transition: .4s;
-        color: var(--green);
-    }
-
 
 /* GALLERY */
     .gallery {
