@@ -7,7 +7,20 @@ document.addEventListener('DOMContentLoaded', function () {
   let current = 0;
 
   function showPage(idx) {
-    items.forEach((el, i) => el.classList.toggle('active', i === idx));
+    items.forEach((el, i) => {
+        if (i === idx) {
+            el.classList.add('active');
+            el.classList.remove('next', 'prev');
+        } else {
+            if (i < idx) {
+                el.classList.add('prev');
+                el.classList.remove('active', 'next');
+            } else {
+                el.classList.add('next');
+                el.classList.remove('active', 'prev');
+            }
+        }
+    });
     dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
   }
 
