@@ -366,26 +366,3 @@ DESKTOP SIZE
         background: var(--light-green);
     }
 
-/* GALLERY */
-    .gallery {
-        flex-direction: row;
-    }
-    .gallery-image {
-        width: 50vw;
-        margin: 0;
-    }
-    .gallery-image img {
-        height: 100vh;
-    }
-    .gallery-content {
-        width: 30vw;
-    }
-    .gallery-thumbnails {
-        gap: 2vw;
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .gallery-thumbnails img:hover {
-        box-shadow: 0 0 1rem rgba(0,0,0,.4);
-        transition: .4s;
-    }
-
