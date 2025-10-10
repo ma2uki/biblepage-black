@@ -1,9 +1,6 @@
 /*
 COMMON
 ================================================ */
-h1 {
-color: white;
-}
 p {
     line-height: 1.7;
 }
@@ -166,9 +163,8 @@ header img {
 
 
 
-body {
-    background-color: black;
-}
+
+
 
 
 .text-display {
